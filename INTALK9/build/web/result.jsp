@@ -4,7 +4,7 @@
     Author     : fszabina
 --%>
 <% 
- if (session.getAttribute("validuser")!=null)
+ if (session.getAttribute("validuser")!=null) 
  {
 %>
 
@@ -16,23 +16,8 @@
         <title>Main</title>
     </head>
     <body>
-        <h1>
-        Üdvözlöm
-         <%=session.getAttribute("validuser")%>!</h1>
-    
-        <form method="post" action="check.jsp">
-            Város: 
-            <input type="text" name="city"><br/>
             <h1> <%=session.getAttribute("validuser")%>, az általad beírt városhoz tartozó irányítószám: <%=session.getAttribute("zipnumber")%>
             </h1>
-                <input type="submit"
-                   name="search" value="Keres"/><br/>
-        </form>
-         
-         
-         
-         
-         
          <a href="check.jsp?logout=yes">
            Kijelentkezés</a>
     </body>
