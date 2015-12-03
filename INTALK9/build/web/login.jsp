@@ -24,28 +24,28 @@
         <script>
             localStorage.clear();
             </script>
+            <link href="bootstrap.css" rel="stylesheet">
+            <link href="indexstyle.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Üdvözöljük!</h1>
-        <form method="post" action="check.jsp">
-            Felhasznalói név: 
-            <input type="text" name="userid"><br/>
-            Jelszó: 
-            <input type="password" name="password"><br/>
-            <input type="submit"
-                   name="login" value="Belép"/>   
+        
+        <form method="post" class="form-signin" action="check.jsp">
+            <h2 class="form-signin-heading">Üdvözöljük!</h2>
+            <label for="userid" class="sr-only">Felhasznalói név: </label>
+            <input type="text" name="userid" id="userid" class="form-control" placeholder="Felhasználói név"><br/>
+            <label for="password" class="sr-only">Jelszó:</label>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Jelszó"><br/>
+            <input type="submit" class="btn btn-lg btn-primary btn-block" 
+                   name="login" value="Belép"/> 
+            <a href="register.jsp" class="btn btn-lg btn-info btn-block">
+                Regisztráció
+            </a>
         </form>
     
     <c:if test="${! empty param.error}">
-        <h4 style="color:red">
+        <h4><span class="label label-danger">
             ${param.error}
-        </h4>        
+            </span> </h4>     
     </c:if>
-    
-        <h4>
-            <a href="register.jsp">
-                Regisztráció
-            </a>
-        </h4>    
     </body>
 </html>

@@ -8,9 +8,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Main</title>
-
+            <link href="bootstrap.css" rel="stylesheet">
+            <link href="indexstyle.css" rel="stylesheet">
     </head>
     <body>
         <h1>
@@ -18,7 +19,7 @@
          <%=session.getAttribute("validuser")%>!</h1>
     
         <form method="post" action="ellenoriz.jsp">
-            Város kerése: 
+            Város keresése: 
             <input  type="text" name="city" id="city"><br/>
                 <input type="submit" onclick="setLocal()"
                    name="search2" value="Keres"/><br/>
@@ -29,7 +30,7 @@
              }
         </script>
           <c:if test="${! empty param.error2}">
-        <h4 style="color:red">
+        <h4 class="sr-only">
             ${param.error2}
         </h4>        
     </c:if>
