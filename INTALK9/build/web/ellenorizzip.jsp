@@ -1,3 +1,6 @@
+<%-- 
+    Author     : csoport 4
+--%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -76,28 +79,30 @@
         session.setAttribute("resultss", 
         request.getParameter("kereses"));
             %>
-        <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+            <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
         url="jdbc:mysql://localhost:3306/qbxo6s"
-        user="root"  password="krosszmotor"/>
+        user="root"  password="krosszmotor"/><%--BEJELENTKEZESI ADATOK PLS DO NOT OPEN--%>
             <sql:query dataSource="${snapshot}" var="result">
-                SELECT * from php_zip where city = '<%= session.getAttribute("resultss")%>' OR zip = '<%= session.getAttribute("resultss")%>';
+                SELECT * from php_zip where city = '<%= session.getAttribute("resultss")%>' 
+                OR zip = '<%= session.getAttribute("resultss")%>';
             </sql:query>
-            <table border="1" width="100%">
-<tr>
-   <th>ID</th>
-   <th>ZIP</th>
-   <th>CITY</th>
-   <th>Kerület</th>
-</tr>
-<c:forEach var="row" items="${result.rows}">
-<tr>
-    <td><c:out value="${row.id}"/></td>
-    <td><a onclick="localStorage.setItem('eredmeny2',this.text)" href="zoomresult.jsp"><c:out value="${row.zip}"/></a></td>
-   <td><c:out value="${row.city}"/></td>
-   <td><c:out value="${row.district}"/></td>
-</tr>
-</c:forEach>
-</table>
+                <table border="1" width="100%">
+                    <tr>
+                       <th>ID</th>
+                       <th>ZIP</th>
+                       <th>CITY</th>
+                       <th>Kerület</th>
+                    </tr>
+                    <c:forEach var="row" items="${result.rows}">
+                    <tr>
+                        <td><c:out value="${row.id}"/></td>
+                        <td><a onclick="localStorage.setItem('eredmeny2',this.text)" href="zoomresult.jsp">
+                                <c:out value="${row.zip}"/></a></td>
+                       <td><c:out value="${row.city}"/></td>
+                       <td><c:out value="${row.district}"/></td>
+                    </tr>
+                    </c:forEach>
+                </table>
 <div id="map_canvas" style="width:100%; height:100%"></div>
     </body>
 </html>

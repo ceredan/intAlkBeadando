@@ -1,3 +1,7 @@
+<%-- 
+    Author     : csoport 4
+--%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <% if (request.getParameter("login")!=null) 
@@ -9,11 +13,12 @@ if (
    
    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
         url="jdbc:mysql://localhost:3306/qbxo6s"
-        user="root"  password="krosszmotor"/>
+        user="root" password="krosszmotor"/>
+   <%-- BEJELENTKEZES ADATOK PLS DO NOT OPEN --%>
    <sql:query var="lekerdezes" 
               dataSource="${snapshot}">
     select * from FELHASZNALOK where userid='${param.userid}' and  
-      password='${param.password}'
+    password='${param.password}'
    </sql:query>
       <c:choose>
         <c:when test="${lekerdezes.rowCount ne 0}">

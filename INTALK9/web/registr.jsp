@@ -1,4 +1,6 @@
-
+<%-- 
+    Author     : csoport 4
+--%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <% Class.forName("com.mysql.jdbc.Driver"); %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,7 +17,7 @@
     <body onload="swal2()">
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
         url="jdbc:mysql://localhost:3306/qbxo6s"
-        user="root"  password="krosszmotor"/>
+        user="root"  password="krosszmotor"/><%-- BEJELENTKEZES ADATOK PLS DO NOT OPEN --%>
 <sql:update var="bevitel" dataSource="${snapshot}">
     INSERT INTO FELHASZNALOK (userid, password, name1)
     VALUES ('${param.userid}', 
