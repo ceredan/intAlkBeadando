@@ -19,6 +19,8 @@
   var geocoder;
   var map;
   var address = localStorage.getItem('city');;
+  console.log(address);
+
   function initialize() {
       console.log('call?');
     geocoder = new google.maps.Geocoder();
@@ -61,6 +63,51 @@
       });
     }
   }
+  var geocoder2;
+  var map2;
+  var address2 = localStorage.getItem('zip');;
+  
+  
+    console.log('call?');
+    geocoder2 = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var myOptions = {
+      zoom: 8,
+      center: latlng,
+    mapTypeControl: true,
+    mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+    navigationControl: true,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map2 = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    if (geocoder) {
+      geocoder.geocode( { 'address': address2}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+          map2.setCenter(results[0].geometry.location);
+
+            var infowindow = new google.maps.InfoWindow(
+                { content: '<b>'+address+'</b>',
+                  size: new google.maps.Size(150,50)
+                });
+
+            var marker = new google.maps.Marker({
+                position: results[0].geometry.location,
+                map: map, 
+                title:address
+            }); 
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map,marker);
+            });
+
+          } else {
+            alert("No results found");
+          }
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+      });
+    }
 </script>
 
     
@@ -108,8 +155,6 @@ String password = "krosszmotor";
     Varosok varosok = new Varosok();
     ResultSet varosokresult = varosok.getVarosok(varosnev);
 %> 
-
-
 <table border="1">
 <tbody>
         <tr>

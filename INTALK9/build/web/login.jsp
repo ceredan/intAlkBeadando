@@ -5,15 +5,9 @@
     Created on : 2015.11.05., 10:24:35
     Author     : fszabina
 --%>
-
-<sql:setDataSource
-    var="VALAKI"
-    url="jdbc:derby://localhost:1527/Derbydb"
-    driver="org.apache.derby.jdbc.ClientDriver"
-    user="valaki"
-    password="valaki"
-    scope="application"
-/>
+        <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/qbxo6s"
+        user="root"  password="krosszmotor"/>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

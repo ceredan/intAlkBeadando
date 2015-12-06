@@ -8,26 +8,37 @@
 <!DOCTYPE html>
 <html>
     <head>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
         <title>Main</title>
             <link href="bootstrap.css" rel="stylesheet">
             <link href="indexstyle.css" rel="stylesheet">
-    </head>
+  
+    <script>
+        function valtoztat() {
+        var valtoztato = document.getElementById("kivalaszt");
+        var cityshow = document.getElementById("citydiv");
+        var zipshow = document.getElementById("zipszamdiv");
+        cityshow.style.display = valtoztato.value == "varos" ? "block" : "none";
+        zipshow.style.display = valtoztato.value == "iranyitoszam" ? "block" : "none";
+    }
+    </script>
+          </head>
     <body>
         <h1>
         Üdvözlöm
          <%=session.getAttribute("validuser")%>!</h1>
-    
-        <form method="post" action="ellenoriz.jsp">
-            Város keresése: 
-            <input  type="text" name="city" id="city"><br/>
-                <input type="submit" onclick="setLocal()"
-                   name="search2" value="Keres"/><br/>
-        </form>
+                <form method="post" action="ellenorizzip.jsp">  
+                <input  type="text" name="kereses" id="kereses"  placeholder="írja be a keresett értéket"><br/>
+                <input type ="submit" onclick="setLocal()" name="citysearch" value="keres"/><br/>
+                    <%
+                        session.setAttribute("resultss", 
+                        request.getParameter("kereses"));
+                    %> 
+                </form>
          <script type="text/javascript">
              function setLocal(){
-                    localStorage.setItem('city',document.getElementById('city').value)
-             }
+                    localStorage.setItem('eredmeny',document.getElementById('kereses').value)
+    }
         </script>
           <c:if test="${! empty param.error2}">
         <h4 class="sr-only">

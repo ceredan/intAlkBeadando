@@ -6,8 +6,12 @@ if (
    request.getParameter("userid")!=null &&
   !request.getParameter("userid").equals("") &&
    request.getParameter("password")!=null) { %>
+   
+   <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/qbxo6s"
+        user="root"  password="krosszmotor"/>
    <sql:query var="lekerdezes" 
-              dataSource="${VALAKI}">
+              dataSource="${snapshot}">
     select * from FELHASZNALOK where userid='${param.userid}' and  
       password='${param.password}'
    </sql:query>
@@ -31,7 +35,7 @@ if (
     %> 
     <jsp:forward page="login.jsp">
         <jsp:param name="error" 
-             value="Hiányzó jelsz/felhasználói név"/>
+             value="Hiányzó jelszó/felhasználói név"/>
     </jsp:forward>
   <%
   }}
@@ -46,27 +50,7 @@ else if (request.getParameter("registration")!=null) {
    request.getParameter("userid")!=null &&
   !request.getParameter("userid").equals("") &&
    request.getParameter("password")!=null) {
+ }
+}
 %>
 
-<sql:update var="bevitel" dataSource="${VALAKI}">
-    INSERT INTO FELHASZNALOK (userid, password,name1)
-    VALUES ('${param.userid}', 
-            '${param.password}',
-            '${param.name1}')
-</sql:update>
-      <h1>Sikeres regisztráció </h1>
-      <h4> A bejelentkezéshez kattinson 
-             <a href="login.jsp">
-                   ide</a></h4>
-
-<% } else {
-       %> 
-    <jsp:forward page="login.jsp">
-        <jsp:param name="error" 
-             value="Sikertelen registráció"/>
-    </jsp:forward>
-  <%
- } 
-
-}
- %>
